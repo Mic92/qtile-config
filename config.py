@@ -61,9 +61,9 @@ keys = [
     Key([mod, "control"], "r", lazy.restart()),
     Key([mod, "control"], "q", lazy.shutdown()),
     Key([mod], "r", lazy.spawncmd()),
-    #Key([], "XF86AudioRaiseVolume", )
-    #Key([], "XF86AudioLowerVolume", )
-    #Key([], "XF86AudioMute", )
+    Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer --quiet set Master 1+")),
+    Key([], "XF86AudioLowerVolume", lazy.spawn("amixer --quiet set Master 1-")),
+    Key([], "XF86AudioMute", lazy.spawn("amixer --quiet set Master toggle")),
     Key([], "XF86MonBrightnessUp", lazy.spawn("xbacklight -inc 10")),
     Key([], "XF86MonBrightnessDown", lazy.spawn("xbacklight -dec 10")),
     Key(["shift"], "space", lazy.spawn("mpc toggle")),
