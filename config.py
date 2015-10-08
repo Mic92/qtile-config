@@ -212,6 +212,7 @@ top_widgets = [
     seperator,
     battery2_icon,
     battery2_widget,
+    widgets.Wlan(interface="wlp3s0"),
     clock_widget,
     # widget.Volume(update_interval=2, emoji=True),
     libqtile.widget.Systray()]
