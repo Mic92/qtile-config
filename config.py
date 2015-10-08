@@ -79,44 +79,59 @@ class Group(libqtile.config.Group):
         self.key = key
 
 groups = [
-        Group('1:web', 1,
+        Group(
+            '1:web', 1,
             init=True,
             persist=False,
             exclusive=True,
             position=1,
-            matches=[Match(wm_class=['Chromium-browser', 'Minefield', 'Firefox'], role=['browser'])]),
-        Group('2:dev', 2,
+            matches=[
+                Match(wm_class=['Chromium-browser', 'Minefield', 'Firefox'],
+                      role=['browser'])
+            ]),
+        Group(
+            '2:dev', 2,
             init=True,
             persist=False,
             position=2,
             exclusive=True,
-            matches=[Match(wm_class=['urxvt', 'URxvt'])]),
-        Group('3:im', 3,
+            matches=[
+                Match(wm_class=['urxvt', 'URxvt'])
+            ]),
+        Group(
+            '3:im', 3,
             init=False,
             persist=False,
             position=3,
             exclusive=True,
             matches=[Match(wm_class=['gajim', 'Gajim'])]),
-        Group('4:mail', 4,
+        Group(
+            '4:mail', 4,
             init=False,
             persist=False,
             position=4,
             exclusive=True,
             matches=[Match(wm_class=['Claws-mail', 'Thunderbird'])]),
-        Group('5:doc', 5,
+        Group(
+            '5:doc', 5,
             init=False,
             persist=False,
             position=5,
-            matches=[Match(wm_class=["Evince", "GVim", "Keepassx", "libreoffice"])]),
-        Group('g:pod', 'g',
+            matches=[
+                Match(wm_class=["Evince", "GVim", "Keepassx", "libreoffice"])
+            ]),
+        Group(
+            'g:pod', 'g',
             init=False,
             persist=False,
             matches=[Match(wm_class=["Gpodder"])]),
-        Group('v:ideo', 'v',
+        Group(
+            'v:ideo', 'v',
             init=False,
             persist=False,
             matches=[Match(wm_class=["MPlayer", "VLC", "Smplayer", "mpv"])]),
-        Group('p:manfm', 'p',
+        Group(
+            'p:manfm', 'p',
             init=False,
             persist=False,
             matches=[Match(wm_class=["pcmanfm", "Pcmanfm"])]),
@@ -151,25 +166,26 @@ widget_defaults = dict(
     fontsize=16,
     padding=3,
 )
-
-battery_default = dict(energy_now_file='charge_now',
+battery_default = dict(
+    energy_now_file='charge_now',
     energy_full_file='charge_full',
     power_now_file='current_now',
     update_delay=5,
-    foreground="7070ff",)
+    foreground="7070ff",
+)
 battery1 = battery_default.copy()
-battery1.update(dict(battery_name='BAT0'))
+battery1.update({'battery_name': 'BAT0'})
 battery2 = battery_default.copy()
-battery2.update(dict(battery_name='BAT1'))
+battery2.update({'battery_name': 'BAT1'})
 
 battery1_widget = libqtile.widget.Battery(**battery1)
-battery1_icon   = libqtile.widget.BatteryIcon(**battery1)
-seperator       = libqtile.widget.TextBox("|")
+battery1_icon = libqtile.widget.BatteryIcon(**battery1)
+seperator = libqtile.widget.TextBox("|")
 battery2_widget = libqtile.widget.Battery(**battery2)
-battery2_icon   = libqtile.widget.BatteryIcon(**battery2)
+battery2_icon = libqtile.widget.BatteryIcon(**battery2)
 
 mpd_widget = widgets.Mpd(fmt_playing="%s %a - %t: %e/%l",
-        do_color_pause=True)
+                         do_color_pause=True)
 
 clock_widget = libqtile.widget.Clock(format='%Y-%m-%d %a %H:%M %p')
 cpu_graph = libqtile.widget.CPUGraph(
@@ -197,11 +213,10 @@ top_widgets = [
     battery2_icon,
     battery2_widget,
     clock_widget,
-    #widget.Volume(update_interval=2, emoji=True),
+    # widget.Volume(update_interval=2, emoji=True),
     libqtile.widget.Systray()]
-
 bottom_widgets = [
-    #widget.Notify(foreground="FF0000", fontsize=14),
+    # widget.Notify(foreground="FF0000", fontsize=14),
     libqtile.widget.TextBox("C:", name="default"),
     cpu_graph,
     libqtile.widget.TextBox("M:", name="default"),
@@ -216,6 +231,7 @@ screens = [
         bottom=bar.Bar(bottom_widgets, 30),
     ),
 ]
+
 
 @hook.subscribe.client_managed
 def focus_client(window):
@@ -232,7 +248,7 @@ mouse = [
 ]
 dgroups_key_binder = simple_key_binder(mod)
 
-#dgroups_key_binder = None
+# dgroups_key_binder = None
 dgroups_app_rules = []
 main = None
 follow_mouse_focus = True
