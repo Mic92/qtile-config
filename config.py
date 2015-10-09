@@ -180,7 +180,6 @@ battery2.update({'battery_name': 'BAT1'})
 
 battery1_widget = libqtile.widget.Battery(**battery1)
 battery1_icon = libqtile.widget.BatteryIcon(**battery1)
-seperator = libqtile.widget.TextBox("|")
 battery2_widget = libqtile.widget.Battery(**battery2)
 battery2_icon = libqtile.widget.BatteryIcon(**battery2)
 
@@ -203,19 +202,26 @@ net_graph = libqtile.widget.NetGraph(
         graph_color='22FF44',
         fill_color='11AA11')
 
+
+def seperator():
+    return libqtile.widget.TextBox("|")
+
 top_widgets = [
     libqtile.widget.GroupBox(),
     libqtile.widget.Prompt(),
     libqtile.widget.TaskList(),
     battery1_icon,
     battery1_widget,
-    seperator,
+    seperator(),
     battery2_icon,
     battery2_widget,
+    seperator(),
     widgets.Wlan(interface="wlp3s0"),
+    seperator(),
     clock_widget,
     # widget.Volume(update_interval=2, emoji=True),
-    libqtile.widget.Systray()]
+    libqtile.widget.Systray(),
+]
 bottom_widgets = [
     # widget.Notify(foreground="FF0000", fontsize=14),
     libqtile.widget.TextBox("C:", name="default"),
@@ -224,7 +230,9 @@ bottom_widgets = [
     memory_widget,
     libqtile.widget.TextBox("N:", name="default"),
     net_graph,
-    mpd_widget
+    mpd_widget,
+    libqtile.widget.Spacer(),
+    libqtile.widget.Notify(),
 ]
 screens = [
     Screen(
