@@ -72,6 +72,8 @@ keys = [
     Key([], "XF86MonBrightnessUp", lazy.spawn("xbacklight -inc 10")),
     Key([], "XF86MonBrightnessDown", lazy.spawn("xbacklight -dec 10")),
     Key(["shift"], "space", lazy.spawn("mpc toggle")),
+    Key([mod], "l", lazy.spawn("sh -c 'scrot /tmp/s.png;"
+                               "i3lock-spy -i /tmp/s.png'"))
 ]
 
 
