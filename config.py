@@ -228,6 +228,7 @@ top_widgets = [
     clock_widget,
     # widget.Volume(update_interval=2, emoji=True),
     libqtile.widget.Systray(),
+    libqtile.widget.CurrentLayout(),
 ]
 bottom_widgets = [
     # widget.Notify(foreground="FF0000", fontsize=14),
