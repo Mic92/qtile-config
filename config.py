@@ -103,7 +103,7 @@ groups = [
             position=2,
             exclusive=True,
             matches=[
-                Match(wm_class=['URxvt'])
+                Match(wm_class=['URxvt', 'terminology'])
             ]),
         Group(
             '3:im', 3,
