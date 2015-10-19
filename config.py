@@ -52,12 +52,11 @@ keys = [
         [mod, "shift"], "Return",
         lazy.layout.toggle_split()
     ),
-    Key([mod], "Return", lazy.spawn("urxvt")),
+    Key([mod], "Return", lazy.spawn("terminology")),
 
     # Toggle between different layouts as defined below
     Key([mod], "Tab", lazy.nextlayout()),
     Key([mod], "w", lazy.window.kill()),
-
     Key([mod, "control"], "r", lazy.restart()),
     Key([mod, "control"], "q", lazy.shutdown()),
     Key([mod], "r", lazy.spawncmd()),
