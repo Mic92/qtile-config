@@ -96,7 +96,7 @@ groups = [
             position=2,
             exclusive=True,
             matches=[
-                Match(wm_class=['urxvt', 'URxvt'])
+                Match(wm_class=['URxvt'])
             ]),
         Group(
             '3:im', 3,
@@ -104,7 +104,7 @@ groups = [
             persist=False,
             position=3,
             exclusive=True,
-            matches=[Match(wm_class=['gajim', 'Gajim'])]),
+            matches=[Match(wm_class=['Skype', 'Gajim'])]),
         Group(
             '4:mail', 4,
             init=False,
@@ -134,7 +134,7 @@ groups = [
             'p:manfm', 'p',
             init=False,
             persist=False,
-            matches=[Match(wm_class=["pcmanfm", "Pcmanfm"])]),
+            matches=[Match(wm_class=["Pcmanfm"])]),
 ]
 
 for i in groups:
