@@ -21,6 +21,7 @@ keys = [
     ),
 
     Key([mod], "f", lazy.window.toggle_floating()),
+    Key([mod], "m", lazy.window.toggle_fullscreen()),
 
     # Move windows up or down in current stack
     Key(
