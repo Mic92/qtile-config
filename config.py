@@ -242,6 +242,7 @@ bottom_widgets = [
     mpd_widget,
     libqtile.widget.Spacer(),
     libqtile.widget.Notify(),
+    widgets.Mtime(),
 ]
 screens = [
     Screen(

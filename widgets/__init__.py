@@ -1,3 +1,3 @@
 from .mpd import Mpd
-from .wlan import Wlan
+from .mtime import Mtime
 #from .pulse import PulseAudio
