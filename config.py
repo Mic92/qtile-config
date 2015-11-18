@@ -224,7 +224,7 @@ top_widgets = [
     battery2_icon,
     battery2_widget,
     seperator(),
-    widgets.Wlan(interface="wlp3s0"),
+    libqtile.widget.Wlan(interface="wlp3s0"),
     seperator(),
     clock_widget,
     # widget.Volume(update_interval=2, emoji=True),
