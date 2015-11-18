@@ -242,6 +242,8 @@ bottom_widgets = [
     mpd_widget,
     libqtile.widget.Spacer(),
     libqtile.widget.Notify(),
+    libqtile.widget.CheckUpdates(distro="Arch_checkupdates",
+                                 update_interval=7200),
     widgets.Mtime(),
 ]
 screens = [
