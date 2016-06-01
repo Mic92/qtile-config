@@ -244,7 +244,11 @@ bottom_widgets = [
     libqtile.widget.Notify(),
     libqtile.widget.CheckUpdates(distro="Arch_checkupdates",
                                  update_interval=7200),
-    widgets.Mtime(),
+    widgets.Mtime(file="/var/lib/last-backup",
+                  text_older_threshold="Backup!"),
+    widgets.Mtime(file="/var/lib/last-nas-backup",
+                  time_threshold=12 * 60 * 60 * 4,
+                  text_older_threshold="Backup NAS!"),
 ]
 screens = [
     Screen(

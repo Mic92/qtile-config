@@ -34,12 +34,18 @@
 # depends on python-mpd
 
 import re
+import os
 
 import mpd
 import select
 
 from libqtile import utils, pangocffi
 from libqtile.widget import base
+from libqtile.log_utils import logger
+
+
+def truncate(s):
+    return (s[:25] + '…') if len(s) > 25 else s
 
 
 class Mpd(base.ThreadPoolText):
@@ -110,14 +116,14 @@ class Mpd(base.ThreadPoolText):
             self.client.connect(host=self.host, port=self.port)
         except Exception:
             if not quiet:
-                self.log.exception('Failed to connect to mpd')
+                logger.exception('Failed to connect to mpd')
             return False
 
         if self.password:
             try:
                 self.client.password(self.password)
             except Exception:
-                self.log.warning('Authentication failed.  Disconnecting')
+                logger.warning('Authentication failed.  Disconnecting')
                 try:
                     self.client.disconnect()
                 except Exception:
@@ -155,10 +161,10 @@ class Mpd(base.ThreadPoolText):
         return rv
 
     def get_artist(self):
-        return self.song['artist']
+        return truncate(self.song['artist'])
 
     def get_album(self):
-        return self.song['album']
+        return truncate(self.song['album'])
 
     def get_elapsed(self):
         elapsed = self.status['time'].split(':')[0]
@@ -195,7 +201,11 @@ class Mpd(base.ThreadPoolText):
             return "Stopped"
 
     def get_title(self):
-        return self.song['title']
+        if self.song['title'] is None:
+            t = os.path.basename(self.song['file'])
+        else:
+            t = self.song['title']
+        return truncate(t)
 
     def get_track(self):
         # This occasionally has leading zeros we don't want.
@@ -288,7 +298,7 @@ class Mpd(base.ThreadPoolText):
             self.status = self.client.status()
             self.song = self.client.currentsong()
         except Exception:
-            self.log.exception('Mpd error on update')
+            logger.exception('Mpd error on update')
             return self.msg_nc
 
         if self.status['state'] == 'stop':
@@ -315,7 +325,7 @@ class Mpd(base.ThreadPoolText):
             self.connected = False
             return self.msg_nc
         except Exception:
-            self.log.exception('Error communicating with mpd')
+            logger.exception('Error communicating with mpd')
             return
 
         return self._get_status()
@@ -335,7 +345,7 @@ class Mpd(base.ThreadPoolText):
             elif button == 5:
                 client.setvol(max(int(status['volume']) - self.inc, 0))
         except Exception:
-            self.log.exception('Mpd error on click')
+            logger.exception('Mpd error on click')
         try:
             client.disconnect()
         except mpd.ConnectionError:
